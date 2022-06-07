@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Home page correctly 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    Object {
+      "alignItems": "stretch",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginHorizontal": 44,
+      "marginTop": 32,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "fontSize": 32,
+          "fontWeight": "bold",
+          "justifyContent": "center",
+          "marginBottom": 24,
+        }
+      }
+    >
+      Hi 
+       !
+       
+      <View
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "rotateZ": 0,
+              },
+            ],
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 32,
+            }
+          }
+        >
+          👋
+        </Text>
+      </View>
+    </Text>
+    <RNGestureHandlerButton
+      collapsable={false}
+      exclusive={true}
+      handlerTag={1}
+      handlerType="NativeViewGestureHandler"
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#222",
+            "borderRadius": 6,
+            "borderWidth": 2,
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "padding": 12,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#fff",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Explore TV shows 📺
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+    <RNGestureHandlerButton
+      collapsable={false}
+      exclusive={true}
+      handlerTag={2}
+      handlerType="NativeViewGestureHandler"
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 6,
+            "borderWidth": 2,
+            "display": "flex",
+            "justifyContent": "center",
+            "opacity": 1,
+            "overflow": "hidden",
+            "padding": 12,
+            "width": "100%",
+          }
+        }
+      >
+        <Text>
+          Logout
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+  </View>
+</RCTScrollView>
+`;
