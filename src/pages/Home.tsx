@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
@@ -31,20 +31,25 @@ export default function Home({
   });
 
   return (
-    <ScrollView contentContainerStyle={styles.view}>
-      <Text style={styles.title}>
-        Hi {user?.name} !{' '}
-        <Animated.View style={animatedStyle}>
-          <Text style={styles.emoji}>👋</Text>
-        </Animated.View>
-      </Text>
-      <Button onPress={() => navigation.push('explore')} style={styles.explore}>
-        Explore TV shows 📺
-      </Button>
+    <View style={styles.view}>
+      <View>
+        <Text style={styles.title}>
+          Hi {user?.name} !{' '}
+          <Animated.View style={animatedStyle}>
+            <Text style={styles.emoji}>👋</Text>
+          </Animated.View>
+        </Text>
+        <Button onPress={() => navigation.push('shows')} style={styles.shows}>
+          Browse TV shows 🍿
+        </Button>
+        <Button onPress={() => navigation.push('movies')} style={styles.shows}>
+          Browse movies 🎬
+        </Button>
+      </View>
       <TouchableOpacity onPress={logout} style={styles.logout}>
-        <Text>Logout</Text>
+        <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -53,6 +58,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'stretch',
     flexDirection: 'column',
+    justifyContent: 'space-between',
     flex: 1,
     marginHorizontal: 44,
     marginTop: 32,
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
   emoji: {
     fontSize: 32,
   },
-  explore: {
+  shows: {
     marginBottom: 8,
   },
   logout: {
@@ -80,5 +86,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     width: '100%',
     padding: 12,
+    marginBottom: 32,
+    borderColor: '#b62e2e',
+  },
+  logoutText: {
+    fontWeight: 'bold',
+    color: '#b62e2e',
   },
 });

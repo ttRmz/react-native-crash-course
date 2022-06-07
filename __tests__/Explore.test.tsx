@@ -1,6 +1,6 @@
 import 'react-native';
 
-test('should render Explore page correctly', () => {
-  // const {toJSON} = render(<Explore />);
+test('should render Shows page correctly', () => {
+  // const {toJSON} = render(<Shows />);
   // expect(toJSON()).toMatchSnapshot();
 });

@@ -5,11 +5,11 @@ import {ExploreItem} from '../components/ExploreItem';
 import {Show, useGetShows} from '../server/shows';
 import {NativeStackScreenList} from '../types/routes';
 
-export default function Explore({
+export default function Shows({
   navigation,
-}: NativeStackScreenProps<NativeStackScreenList, 'explore'>) {
+}: NativeStackScreenProps<NativeStackScreenList, 'shows'>) {
   const renderItem = ({item}: {item: Show; index: number}) => {
-    return <ExploreItem navigation={navigation} show={item} />;
+    return <ExploreItem navigation={navigation} infos={item} />;
   };
 
   const {shows, loading, fetchMore} = useGetShows();

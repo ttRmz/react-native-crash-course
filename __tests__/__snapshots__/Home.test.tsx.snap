@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Home page correctly 1`] = `
-<RCTScrollView
-  contentContainerStyle={
+<View
+  style={
     Object {
       "alignItems": "stretch",
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
+      "justifyContent": "space-between",
       "marginHorizontal": 44,
       "marginTop": 32,
     }
@@ -94,7 +95,7 @@ exports[`should render Home page correctly 1`] = `
             ]
           }
         >
-          Explore TV shows 📺
+          Browse TV shows 🍿
         </Text>
       </View>
     </RNGestureHandlerButton>
@@ -115,10 +116,13 @@ exports[`should render Home page correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
+            "backgroundColor": "#222",
             "borderRadius": 6,
             "borderWidth": 2,
             "display": "flex",
+            "flexDirection": "row",
             "justifyContent": "center",
+            "marginBottom": 8,
             "opacity": 1,
             "overflow": "hidden",
             "padding": 12,
@@ -126,11 +130,64 @@ exports[`should render Home page correctly 1`] = `
           }
         }
       >
-        <Text>
-          Logout
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#fff",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Browse movies 🎬
         </Text>
       </View>
     </RNGestureHandlerButton>
   </View>
-</RCTScrollView>
+  <RNGestureHandlerButton
+    collapsable={false}
+    exclusive={true}
+    handlerTag={3}
+    handlerType="NativeViewGestureHandler"
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderColor": "#b62e2e",
+          "borderRadius": 6,
+          "borderWidth": 2,
+          "display": "flex",
+          "justifyContent": "center",
+          "marginBottom": 32,
+          "opacity": 1,
+          "overflow": "hidden",
+          "padding": 12,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#b62e2e",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </RNGestureHandlerButton>
+</View>
 `;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useGet} from 'restful-react';
-import {ShowGenre, useGetShowsGenres} from './genres';
+import {Genre, useGetShowsGenres} from './genres';
 
 interface CommonShowResponse {
   id: number;
@@ -15,7 +15,7 @@ interface ShowResponse extends CommonShowResponse {
 }
 
 export interface Show extends CommonShowResponse {
-  genres: ShowGenre[];
+  genres: Genre[];
 }
 
 type getShowResponse =
@@ -24,11 +24,11 @@ type getShowResponse =
     }
   | undefined;
 
-function formatShows(shows: ShowResponse[], genres: ShowGenre[]): Show[] {
+function formatShows(shows: ShowResponse[], genres: Genre[]): Show[] {
   return shows.map(show => {
     const showGenres = show.genre_ids
       .map(id => genres.find(genre => genre.id === id))
-      .filter(genre => genre !== undefined) as ShowGenre[];
+      .filter(genre => genre !== undefined) as Genre[];
 
     return {
       ...show,

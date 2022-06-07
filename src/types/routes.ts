@@ -1,10 +1,10 @@
+import {Movie} from '../server/movies';
 import {Show} from '../server/shows';
 
 export type NativeStackScreenList = {
-  item: {
-    show: Show;
-  };
+  item: Movie | Show;
   home: undefined;
-  explore: undefined;
+  shows: undefined;
+  movies: undefined;
   login: undefined;
 };

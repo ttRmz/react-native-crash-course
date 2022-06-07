@@ -10,6 +10,11 @@ export default function Login() {
   const [error, setError] = React.useState('');
   const {login} = useUserContext();
 
+  const handleChnageName = (value: string) => {
+    setError('');
+    setName(value);
+  };
+
   const handleLogin = () => {
     if (name) {
       login({name});
@@ -20,12 +25,14 @@ export default function Login() {
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.view}>
-      <Text style={styles.title}>Who are you ?</Text>
+      <Text style={styles.title}>
+        Who are you ? <Text>{error ? '😡' : '🤔'}</Text>
+      </Text>
       <TextInput
         onSubmitEditing={handleLogin}
         placeholder="Enter your name here"
-        style={styles.input}
-        onChangeText={setName}
+        style={[styles.input, !!error && styles.inputError]}
+        onChangeText={handleChnageName}
         value={name}
       />
       {!!error && <Text style={styles.error}>{error}</Text>}
@@ -46,6 +53,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 44,
   },
   title: {
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 24,
     display: 'flex',
@@ -60,8 +68,11 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     overflow: 'hidden',
   },
+  inputError: {
+    borderColor: '#b62e2e',
+  },
   error: {
-    color: 'red',
+    color: '#b62e2e',
     marginTop: -8,
     marginBottom: 16,
   },

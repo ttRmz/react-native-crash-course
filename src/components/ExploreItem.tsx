@@ -13,18 +13,18 @@ import {NativeStackScreenList} from '../types/routes';
 
 interface ExploreItemProps {
   shouldPreventDelay?: boolean;
-  show: Show;
+  infos: Show;
   navigation?: NativeStackScreenProps<
     NativeStackScreenList,
-    'explore'
+    'shows' | 'movies'
   >['navigation'];
 }
 
-export function ExploreItem({show, navigation}: ExploreItemProps) {
-  const {poster_path, name} = show;
+export function ExploreItem({infos, navigation}: ExploreItemProps) {
+  const {poster_path, name} = infos;
 
   const onNavigate = () => {
-    navigation?.navigate('item', {show});
+    navigation?.navigate('item', infos);
   };
 
   const enteringAnimation = FadeInDown.duration(500);

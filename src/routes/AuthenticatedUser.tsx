@@ -4,10 +4,11 @@ import {
 } from '@react-navigation/native-stack';
 import React from 'react';
 import {Header} from '../components/Header';
-import Explore from '../pages/Explore';
+import Shows from '../pages/Shows';
 import Home from '../pages/Home';
 import Item from '../pages/Item';
 import {NativeStackScreenList} from '../types/routes';
+import Movies from '../pages/Movies';
 
 const Stack = createNativeStackNavigator<NativeStackScreenList>();
 
@@ -22,9 +23,14 @@ export function AuthenticatedUser() {
         }}
       />
       <Stack.Screen
-        name="explore"
-        component={Explore}
-        options={{header: () => <Header title="Explore" />}}
+        name="shows"
+        component={Shows}
+        options={{header: () => <Header title="TV Shows" />}}
+      />
+      <Stack.Screen
+        name="movies"
+        component={Movies}
+        options={{header: () => <Header title="Movies" />}}
       />
       <Stack.Screen
         name="item"
@@ -35,7 +41,7 @@ export function AuthenticatedUser() {
               NativeStackScreenList,
               'item'
             >;
-            return <Header title={route.params.show.name} />;
+            return <Header title={route.params.name} />;
           },
         }}
       />

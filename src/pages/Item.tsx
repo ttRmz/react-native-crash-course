@@ -9,22 +9,22 @@ import {NativeStackScreenList} from '../types/routes';
 export default function Item({
   route,
 }: NativeStackScreenProps<NativeStackScreenList, 'item'>) {
-  const {show} = route.params;
+  const infos = route.params;
 
   const enteringAnimation = FadeInDown.duration(500);
 
   return (
     <Animated.ScrollView entering={enteringAnimation}>
-      <ExploreItem show={show} />
+      <ExploreItem infos={infos} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.list}>
-        {show.genres.map(genre => (
+        {infos.genres.map(genre => (
           <Tag key={genre.id}>{genre.name}</Tag>
         ))}
       </ScrollView>
-      <Text style={styles.overview}>{show.overview}</Text>
+      <Text style={styles.overview}>{infos.overview}</Text>
     </Animated.ScrollView>
   );
 }
