@@ -19,6 +19,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.13.1",
+    "react-native-youtube": "^2.0.2",
     "restful-react": "^15.9.4",
     "uuid": "^8.3.2"
   },

@@ -41,7 +41,7 @@ export function AuthenticatedUser() {
               NativeStackScreenList,
               'item'
             >;
-            return <Header title={route.params.name} />;
+            return <Header title={route.params.infos.name} />;
           },
         }}
       />

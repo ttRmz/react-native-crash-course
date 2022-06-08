@@ -1,29 +1,30 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
 import {Movie} from '../server/movies';
 import {Show} from '../server/shows';
-import {NativeStackScreenList} from '../types/routes';
 import {CardItem} from './CardItem';
 
 interface CardsListProps {
+  onPressItem?: (item: Movie | Show) => void;
   loading: boolean;
   onEndReached: () => void;
   items: (Show | Movie)[];
-  navigation: NativeStackScreenProps<
-    NativeStackScreenList,
-    'movies' | 'shows'
-  >['navigation'];
 }
 
 export function CardsList({
-  navigation,
   onEndReached,
   items,
   loading,
+  onPressItem,
 }: CardsListProps) {
-  const renderItem = ({item}: {item: Movie; index: number}) => {
-    return <CardItem navigation={navigation} infos={item} />;
+  const renderItem = ({item}: {item: Movie | Show; index: number}) => {
+    const onPress = () => {
+      if (typeof onPressItem === 'function') {
+        onPressItem(item);
+      }
+    };
+
+    return <CardItem onPress={onPress} infos={item} />;
   };
 
   return (

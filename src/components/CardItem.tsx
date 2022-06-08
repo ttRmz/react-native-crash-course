@@ -1,4 +1,3 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
@@ -8,32 +7,25 @@ import {
   View,
 } from 'react-native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
+import {Movie} from '../server/movies';
 import {Show} from '../server/shows';
-import {NativeStackScreenList} from '../types/routes';
 
 interface CardItemProps {
-  shouldPreventDelay?: boolean;
-  infos: Show;
-  navigation?: NativeStackScreenProps<
-    NativeStackScreenList,
-    'shows' | 'movies'
-  >['navigation'];
+  onPress?: () => void;
+  infos: Show | Movie;
 }
 
-export function CardItem({infos, navigation}: CardItemProps) {
+export function CardItem({infos, onPress}: CardItemProps) {
   const {poster_path, name} = infos;
-
-  const onNavigate = () => {
-    navigation?.navigate('item', infos);
-  };
 
   const enteringAnimation = FadeInDown.duration(500);
 
-  const Component: any = navigation ? TouchableOpacity : View;
+  const Component: any =
+    typeof onPress === 'function' ? TouchableOpacity : View;
 
   return (
     <Animated.View entering={enteringAnimation}>
-      <Component onPress={onNavigate} style={styles.item}>
+      <Component onPress={onPress} style={styles.item}>
         <ImageBackground
           resizeMode="cover"
           style={styles.image}

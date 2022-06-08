@@ -1,44 +1,74 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {CardItem} from '../components/CardItem';
 import {Tag} from '../components/Tag';
+import {Video} from '../components/Video';
+import {useGetMovieVideos} from '../server/video';
 import {NativeStackScreenList} from '../types/routes';
+
+export type ItemType = 'tv' | 'movie';
 
 export default function Item({
   route,
 }: NativeStackScreenProps<NativeStackScreenList, 'item'>) {
-  const infos = route.params;
+  const {infos, type} = route.params;
+
+  const {videos, loading} = useGetMovieVideos(infos.id, type);
 
   const enteringAnimation = FadeInDown.duration(500);
+
+  if (loading) {
+    return <ActivityIndicator style={styles.loading} size="large" />;
+  }
 
   return (
     <Animated.ScrollView entering={enteringAnimation}>
       <CardItem infos={infos} />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.list}>
-        {infos.genres.map(genre => (
-          <Tag key={genre.id}>{genre.name}</Tag>
+      <View style={styles.content}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.list}>
+          {infos.genres.map(genre => (
+            <Tag key={genre.id}>{genre.name}</Tag>
+          ))}
+        </ScrollView>
+        <Text style={styles.overview}>{infos.overview}</Text>
+        <Text style={styles.trailer}>Videos 📺</Text>
+        {videos.map(({name, key}) => (
+          <Video id={key} name={name} key={key} />
         ))}
-      </ScrollView>
-      <Text style={styles.overview}>{infos.overview}</Text>
+      </View>
     </Animated.ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  list: {
+  loading: {
+    flex: 1,
+  },
+  content: {
     marginHorizontal: 20,
+    marginBottom: 24,
+  },
+  list: {
     display: 'flex',
     flexDirection: 'row',
     marginVertical: 16,
   },
   overview: {
-    fontSize: 16,
-    marginHorizontal: 20,
     marginBottom: 24,
+  },
+  trailer: {
+    fontWeight: 'bold',
+    marginBottom: 12,
   },
 });
