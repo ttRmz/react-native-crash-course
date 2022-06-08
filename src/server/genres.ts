@@ -5,20 +5,20 @@ export type Genre = {
   name: string;
 };
 
-type getGenresResponse =
+type GenresResponse =
   | {
       genres: Genre[];
     }
   | undefined;
 
 export const useGetShowsGenres = () => {
-  const {data, ...rest} = useGet<getGenresResponse>('/genre/tv/list');
+  const {data, ...rest} = useGet<GenresResponse>('/genre/tv/list');
 
   return {genres: data ? data.genres : [], ...rest};
 };
 
 export const useGetMoviesGenres = () => {
-  const {data, ...rest} = useGet<getGenresResponse>('/genre/movie/list');
+  const {data, ...rest} = useGet<GenresResponse>('/genre/movie/list');
 
   return {genres: data ? data.genres : [], ...rest};
 };

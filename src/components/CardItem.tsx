@@ -11,7 +11,7 @@ import Animated, {FadeInDown} from 'react-native-reanimated';
 import {Show} from '../server/shows';
 import {NativeStackScreenList} from '../types/routes';
 
-interface ExploreItemProps {
+interface CardItemProps {
   shouldPreventDelay?: boolean;
   infos: Show;
   navigation?: NativeStackScreenProps<
@@ -20,7 +20,7 @@ interface ExploreItemProps {
   >['navigation'];
 }
 
-export function ExploreItem({infos, navigation}: ExploreItemProps) {
+export function CardItem({infos, navigation}: CardItemProps) {
   const {poster_path, name} = infos;
 
   const onNavigate = () => {

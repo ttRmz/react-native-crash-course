@@ -2,7 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
-import {ExploreItem} from '../components/ExploreItem';
+import {CardItem} from '../components/CardItem';
 import {Tag} from '../components/Tag';
 import {NativeStackScreenList} from '../types/routes';
 
@@ -15,7 +15,7 @@ export default function Item({
 
   return (
     <Animated.ScrollView entering={enteringAnimation}>
-      <ExploreItem infos={infos} />
+      <CardItem infos={infos} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
