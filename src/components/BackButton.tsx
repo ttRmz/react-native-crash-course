@@ -1,13 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export function BackButton() {
   const {goBack} = useNavigation();
 
   return (
     <TouchableOpacity style={styles.container} onPress={goBack}>
-      <Text style={styles.text}>Back</Text>
+      <Icon style={styles.icon} name="angle-left" />
     </TouchableOpacity>
   );
 }
@@ -15,7 +16,8 @@ export function BackButton() {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    left: 16,
+    left: 8,
+    padding: 12,
   },
-  text: {fontWeight: 'bold'},
+  icon: {fontWeight: 'bold', fontSize: 24},
 });
