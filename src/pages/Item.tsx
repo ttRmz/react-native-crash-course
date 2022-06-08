@@ -42,7 +42,12 @@ export default function Item({
           ))}
         </ScrollView>
         <Text style={styles.overview}>{infos.overview}</Text>
-        <Text style={styles.trailer}>Videos 📺</Text>
+        {videos.length > 0 ? (
+          <Text
+            style={styles.trailer}
+            children={`Trailer${videos.length > 1 ? 's' : ''} 📺`}
+          />
+        ) : null}
         {videos.map(({name, key}) => (
           <Video id={key} name={name} key={key} />
         ))}

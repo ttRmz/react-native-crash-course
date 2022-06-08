@@ -4,6 +4,7 @@ import {ItemType} from '../pages/Item';
 export type Video = {
   key: string;
   name: string;
+  type: string;
 };
 
 type MovieResponse =
@@ -15,5 +16,8 @@ type MovieResponse =
 export const useGetMovieVideos = (id: number, type: ItemType) => {
   const {data, ...rest} = useGet<MovieResponse>(`/${type}/${id}/videos`);
 
-  return {videos: data ? data.results : [], ...rest};
+  const videos = data
+    ? data.results.filter(video => video.type === 'Trailer')
+    : [];
+  return {videos, ...rest};
 };
