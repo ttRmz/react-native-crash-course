@@ -19,6 +19,8 @@ target 'myAppName' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-encrypted-storage', :path => '../node_modules/react-native-encrypted-storage'
+
   target 'myAppNameTests' do
     inherit! :complete
     # Pods for testing

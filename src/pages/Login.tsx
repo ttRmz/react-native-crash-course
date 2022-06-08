@@ -7,11 +7,13 @@ import {useUserContext} from '../contexts/user';
 
 export default function Login() {
   const [name, setName] = React.useState('');
-  const [error, setError] = React.useState('');
-  const {login} = useUserContext();
+  const [loginError, setLoginError] = React.useState('');
+  const {login, error: userError} = useUserContext();
+
+  const error = userError || loginError;
 
   const handleChnageName = (value: string) => {
-    setError('');
+    setLoginError('');
     setName(value);
   };
 
@@ -19,19 +21,19 @@ export default function Login() {
     if (name) {
       login({name});
     } else {
-      setError('Name is required');
+      setLoginError('Name is required');
     }
   };
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.view}>
       <Text style={styles.title}>
-        Who are you ? <Text>{error ? '😡' : '🤔'}</Text>
+        Who are you ? <Text>{loginError ? '😡' : '🤔'}</Text>
       </Text>
       <TextInput
         onSubmitEditing={handleLogin}
         placeholder="Enter your name here"
-        style={[styles.input, !!error && styles.inputError]}
+        style={[styles.input, !!loginError && styles.inputError]}
         onChangeText={handleChnageName}
         value={name}
       />

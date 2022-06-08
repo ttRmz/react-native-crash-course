@@ -1,4 +1,5 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useEffect} from 'react';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 interface User {
   name: string;
@@ -8,12 +9,16 @@ const defaultValues = {
   user: null,
   login: () => {},
   logout: () => {},
+  loading: true,
+  error: '',
 };
 
 interface UserContextValues {
   user: User | null;
   login: (user: User) => void;
   logout: () => void;
+  loading: boolean;
+  error: string;
 }
 
 const UserContext = React.createContext<UserContextValues>(defaultValues);
@@ -26,12 +31,32 @@ export const UserProvider = ({
   children: ReactElement;
 }): ReactElement => {
   const [user, setUser] = React.useState<User | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(defaultValues.loading);
+  const [error, setError] = React.useState<string>(defaultValues.error);
 
-  function login({name}: User): void {
-    setUser({name});
+  useEffect(() => {
+    setLoading(true);
+    retrieveUserSession().then(response => {
+      setUser(response);
+      setLoading(false);
+    });
+  }, []);
+
+  function login(userSession: User): void {
+    setLoading(true);
+    storeUserSession(userSession)
+      .then(() => {
+        setLoading(false);
+        setUser(userSession);
+      })
+      .catch(() => {
+        setLoading(false);
+        setError('Failed to login');
+      });
   }
 
   function logout() {
+    EncryptedStorage.removeItem('user_session');
     setUser(null);
   }
 
@@ -40,8 +65,10 @@ export const UserProvider = ({
       user,
       login,
       logout,
+      loading,
+      error,
     }),
-    [user],
+    [user, loading, error],
   );
 
   return (
@@ -50,3 +77,29 @@ export const UserProvider = ({
     </UserContext.Provider>
   );
 };
+
+async function storeUserSession(user: User): Promise<void> {
+  try {
+    const result = await EncryptedStorage.setItem(
+      'user_session',
+      JSON.stringify(user),
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function retrieveUserSession(): Promise<User | null> {
+  try {
+    const session = await EncryptedStorage.getItem('user_session');
+
+    if (session !== null) {
+      return JSON.parse(session);
+    }
+
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
